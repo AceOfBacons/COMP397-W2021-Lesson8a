@@ -33,10 +33,17 @@ public class PlayerBehaviour : MonoBehaviour
     [Range(0, 100)]
     public int health = 100;
 
+    [Header("Controls")]
+    public Joystick joystick;
+    public float horizontalSensitivity;
+    public float vertcialSensitivity;
+
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
     }
 
     // Update is called once per frame - once every 16.6666ms
@@ -50,8 +57,8 @@ public class PlayerBehaviour : MonoBehaviour
             velocity.y = -2.0f;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = joystick.Horizontal;
+        float z = joystick.Vertical;
 
         Vector3 move = transform.right * x + transform.forward * z;
 
